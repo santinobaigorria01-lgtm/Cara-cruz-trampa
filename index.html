@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giro de la moneda</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      color: #1f2937;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .option-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 18px 0;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      border-radius: 12px;
+      padding: 10px 16px;
+      transition: background .2s;
+    }
+    input[type="radio"] {
+      accent-color: #4338ca;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #4338ca;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform .15s ease, background .2s ease;
+    }
+    button:hover {
+      background: #3730a3;
+      transform: translateY(-1px);
+    }
+    #resultado {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Giro de la moneda</h1>
+    <p>Jugador 1: selecciona lo que elige tu rival.</p>
+
+    <div class="option-group">
+      <label>
+        <input type="radio" name="eleccion" value="cara" />
+        Cara
+      </label>
+      <label>
+        <input type="radio" name="eleccion" value="cruz" />
+        Cruz
+      </label>
+    </div>
+
+    <button id="girarBtn">Girar moneda</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    const girarBtn = document.getElementById('girarBtn');
+    const resultadoDiv = document.getElementById('resultado');
+
+    girarBtn.addEventListener('click', () => {
+      const eleccion = document.querySelector('input[name="eleccion"]:checked');
+      if (!eleccion) {
+        resultadoDiv.textContent = 'Selecciona cara o cruz primero.';
+        return;
+      }
+
+      const rival = eleccion.value;
+      const moneda = rival === 'cara' ? 'cruz' : 'cara';
+
+      resultadoDiv.innerHTML = `Tu rival eligió <strong>${rival}</strong>.<br />Al girar la moneda sale <strong>${moneda}</strong>.`;
+    });
+  </script>
+</body>
+</html>
